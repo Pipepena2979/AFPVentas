@@ -1,0 +1,12 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    level: 5  # Cambia el nivel de análisis según tus necesidades (0 - 9)
+    paths:
+        - app/
+        - database/
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\.*#' # Ignora errores relacionados con métodos mágicos de Laravel
+    scanDirectories:
+        - vendor/laravel/framework/src  # Directorios de Laravel a escanear
