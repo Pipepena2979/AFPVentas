@@ -148,7 +148,6 @@ class CompraController extends Controller
 
         $compra->detalles()->delete();
         $compra->delete();
-        // Compra::destroy($id);
 
 
         // REDIRECCIONAR AL INDEX DE COMPRAS //

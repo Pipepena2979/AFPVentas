@@ -90,6 +90,20 @@
             </div>
             <!-- /.info-box -->
         </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box zoomP">
+                <a href="{{route('admin.clientes.index')}}" class="info-box-icon bg-maroon">
+                    <span><i class="fas fa-users"></i></span>
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text">Clientes Registrados</span>
+                    <span class="info-box-number">{{ $total_clientes }} clientes</span>
+                </div>
+            <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
     </div>
 @stop
 
