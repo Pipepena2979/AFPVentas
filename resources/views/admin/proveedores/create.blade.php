@@ -1,7 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
 @section('content_header')
     <h1><b>Proveedores/Registrar Nuevo Proveedor</b></h1>
     <hr>

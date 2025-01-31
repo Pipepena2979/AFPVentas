@@ -55,7 +55,8 @@
                                                         </button>
                                                     </div>
                                                 <div class="modal-body">
-                                                    <table id="tabla_productos" class="table table-hover table-success table-striped">
+                                                    <div class="table-responsive">
+                                                        <table id="tabla_productos" class="table table-hover table-success table-striped">
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-center">No.</th>
@@ -89,7 +90,8 @@
                                                                     </tr>
                                                             @endforeach
                                                         </tbody>
-                                                    </table>                                        
+                                                        </table>
+                                                    </div>                                        
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -120,7 +122,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <table class="table table-hover table-success table-striped-columns">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-success table-striped-columns">
                             <thead>
                                 <tr style="text-align: center;vertical-align: middle">
                                     <th>No.</th>
@@ -161,7 +164,8 @@
                                     <td></td>
                                 </tr>
                             </tfooter>
-                        </table>
+                            </table>
+                        </div>
                         <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="precio_compra">Total Compra</label>
@@ -186,7 +190,8 @@
                                                     </button>
                                                 </div>
                                             <div class="modal-body">
-                                                <table id="tabla_proveedores" class="table table-hover table-success table-striped">
+                                                <div class="table-responsive">
+                                                    <table id="tabla_proveedores" class="table table-hover table-success table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th class="text-center">No.</th>
@@ -208,7 +213,8 @@
                                                                 </tr>
                                                         @endforeach
                                                     </tbody>
-                                                </table>                                        
+                                                    </table>
+                                                </div>                                        
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

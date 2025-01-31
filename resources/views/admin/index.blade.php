@@ -104,6 +104,34 @@
             </div>
             <!-- /.info-box -->
         </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box zoomP">
+                <a href="{{route('admin.ventas.index')}}" class="info-box-icon bg-olive">
+                    <span><i class="fas fa-money-bill"></i></span>
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text">Ventas Registradas</span>
+                    <span class="info-box-number">{{ $total_ventas }} ventas</span>
+                </div>
+            <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box zoomP">
+                <a href="{{route('admin.arqueos.index')}}" class="info-box-icon bg-navy">
+                    <span><i class="fas fa-cash-register"></i></span>
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text">Arqueos de Caja Registrados</span>
+                    <span class="info-box-number">{{ $total_arqueosCaja }} Arqueos de Caja</span>
+                </div>
+            <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
     </div>
 @stop
 

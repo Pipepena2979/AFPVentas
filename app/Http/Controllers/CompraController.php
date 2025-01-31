@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArqueoCaja;
 use App\Models\Compra;
 use App\Models\DetalleCompra;
+use App\Models\MovimientoCaja;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\TmpCompra;
@@ -17,9 +19,10 @@ class CompraController extends Controller
      */
     public function index()
     {
+        $arqueoAbierto = ArqueoCaja::whereNull('fecha_cierre')->first();
         $compras = Compra::with('detalles')->get();
 
-        return view('admin.compras.index', compact('compras'));
+        return view('admin.compras.index', compact('compras', 'arqueoAbierto'));
     }
 
     /**
@@ -59,6 +62,20 @@ class CompraController extends Controller
         $compra->empresa_id = Auth::user()->empresa_id;
         $compra->proveedor_id = $request->id_proveedor;
         $compra->save();
+
+        // REGISTRAR EL ARQUEO_CAJA EN LA COMPRA //
+        
+        $arqueoCaja = ArqueoCaja::whereNull('fecha_cierre')->first();
+
+        $movimientoCaja = new MovimientoCaja();
+        $movimientoCaja->tipo = "EGRESO";
+        $movimientoCaja->monto = $request->precio_compra;
+        $movimientoCaja->descripcion = "Compra de Productos";
+        $movimientoCaja->arqueoCaja_id = $arqueoCaja->id;
+
+        $movimientoCaja->save();
+
+        // REGISTRAR EL ARQUEO_CAJA EN LA COMPRA (FIN) //
 
         $tmp_compras = TmpCompra::where('session_id', $session_id)->get();
 

@@ -420,7 +420,7 @@ return [
         ],
         [
             'text' => 'Ventas',
-            'icon' => 'fas fa-fw fa-cash-register',
+            'icon' => 'fas fa-fw fa-money-bill',
             'classes' => 'bg-green text-white',
             'submenu' => [
                 [
@@ -430,22 +430,18 @@ return [
                 ],
             ]
         ],
-        // ['header' => 'labels'],
-        // [
-        //     'text' => 'important',
-        //     'icon_color' => 'red',
-        //     'url' => '#',
-        // ],
-        // [
-        //     'text' => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url' => '#',
-        // ],
-        // [
-        //     'text' => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url' => '#',
-        // ],
+        [
+            'text' => 'Arqueo de Caja',
+            'icon' => 'fas fa-fw fa-cash-register',
+            'classes' => 'bg-green text-white',
+            'submenu' => [
+                [
+                    'text' => 'Listado de arqueos de caja',
+                    'url' => 'admin/arqueos',
+                    'classes' => 'bg-white text-black',
+                ],
+            ]
+        ],
     ],
 
     /*

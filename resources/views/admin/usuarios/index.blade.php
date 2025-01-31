@@ -16,7 +16,8 @@
                     </div>
                 </div>
                 <div class="card-body" style="display: block;">
-                    <table id="tabla_usuarios" class="table table-hover table-success table-striped-columns">
+                    <div class="table-responsive">
+                        <table id="tabla_usuarios" class="table table-hover table-success table-striped-columns">
                         <thead>
                             <tr>
                                 <th scope="col" class="text-center">No.</th>
@@ -68,7 +69,8 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

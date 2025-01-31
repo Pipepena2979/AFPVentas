@@ -112,3 +112,16 @@ Route::delete('/admin/ventas/create/tmp/{id}', [App\Http\Controllers\TmpVentaCon
 // RUTAS PARA EL DETALLE DE LAS VENTAS //
 Route::post('/admin/ventas/detalle/create', [App\Http\Controllers\DetalleVentaController::class, 'store'])->name('admin.ventas.detalle.store')->middleware('auth');
 Route::delete('/admin/ventas/detalle/{id}', [App\Http\Controllers\DetalleVentaController::class, 'destroy'])->name('admin.ventas.detalle.destroy')->middleware('auth');
+
+// RUTAS PARA LOS ARQUEOS DE CAJA //
+Route::get('/admin/arqueos', [App\Http\Controllers\ArqueoCajaController::class, 'index'])->name('admin.arqueos.index')->middleware('auth');
+Route::get('/admin/arqueos/create', [App\Http\Controllers\ArqueoCajaController::class, 'create'])->name('admin.arqueos.create')->middleware('auth');
+Route::post('/admin/arqueos/create', [App\Http\Controllers\ArqueoCajaController::class, 'store'])->name('admin.arqueos.store')->middleware('auth');
+Route::get('/admin/arqueos/{id}', [App\Http\Controllers\ArqueoCajaController::class, 'show'])->name('admin.arqueos.show')->middleware('auth');
+Route::get('/admin/arqueos/{id}/edit', [App\Http\Controllers\ArqueoCajaController::class, 'edit'])->name('admin.arqueos.edit')->middleware('auth');
+Route::get('/admin/arqueos/{id}/ingreso-egreso', [App\Http\Controllers\ArqueoCajaController::class, 'ingreso_egreso'])->name('admin.arqueos.ingreso_egreso')->middleware('auth');
+Route::post('/admin/arqueos/create_ingreso-egreso', [App\Http\Controllers\ArqueoCajaController::class, 'store_ingreso_egreso'])->name('admin.arqueos.store_ingreso_egreso')->middleware('auth');
+Route::get('/admin/arqueos/{id}/cierre', [App\Http\Controllers\ArqueoCajaController::class, 'cierre'])->name('admin.arqueos.cierre')->middleware('auth');
+Route::post('/admin/arqueos/create_cierre', [App\Http\Controllers\ArqueoCajaController::class, 'store_cierre'])->name('admin.arqueos.store_cierre')->middleware('auth');
+Route::put('/admin/arqueos/{id}', [App\Http\Controllers\ArqueoCajaController::class, 'update'])->name('admin.arqueos.update')->middleware('auth');
+Route::delete('/admin/arqueos/{id}', [App\Http\Controllers\ArqueoCajaController::class, 'destroy'])->name('admin.arqueos.destroy')->middleware('auth');

@@ -12,11 +12,16 @@
                 <div class="card-header">
                     <h3 class="card-title">Compras Registradas</h3>
                     <div class="card-tools">
-                        <a href="{{ route('admin.compras.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Crear Compra</a>
+                        @if($arqueoAbierto)
+                            <a href="{{ route('admin.compras.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Crear Compra</a>
+                        @else
+                            <a href="{{ route('admin.arqueos.create') }}" class="btn btn-danger"><i class="fas fa-cash-register"></i> Abrir Caja</a>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body" style="display: block;">
-                    <table id="tabla_compras" class="table table-hover table-success table-striped-columns">
+                    <div class="table-responsive">
+                        <table id="tabla_compras" class="table table-hover table-success table-striped-columns">
                         <thead>
                             <tr>
                                 <th scope="col" class="text-center">No.</th>
@@ -76,7 +81,8 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

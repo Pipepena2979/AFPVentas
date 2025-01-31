@@ -40,7 +40,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <table class="table table-hover table-success table-striped-columns">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-success table-striped-columns">
                             <thead>
                                 <tr style="text-align: center;vertical-align: middle">
                                     <th>No.</th>
@@ -76,7 +77,8 @@
                                     <td style="text-align: center;vertical-align: middle"><strong>{{ $total_compra }}</strong></td>
                                 </tr>
                             </tfoot>
-                        </table>                        
+                            </table>
+                        </div>                        
                         <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="precio_compra">Total Compra</label>
