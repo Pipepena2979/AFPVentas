@@ -99,8 +99,8 @@
                         <td>{{ $contador++ }}</td>
                         <td>{{ $arqueo->fecha_apertura }}</td>
                         <td>{{ $arqueo->monto_inicial }}</td>
-                        <td>{{ $arqueo->fecha_cierre }}</td>
-                        <td>{{ $arqueo->monto_final }}</td>
+                        <td>{{ $arqueo->fecha_cierre ?? 'NO SE HA CERRADO LA CAJA' }}</td>
+                        <td>{{ $arqueo->monto_final ?? 'NO SE HA CERRADO LA CAJA' }}</td>
                         <td>{{ $arqueo->observaciones }}</td>
                         <td><b>Ingresos:</b> <br>
                             {{ number_format($arqueo->total_ingresos, 2) }}<br>

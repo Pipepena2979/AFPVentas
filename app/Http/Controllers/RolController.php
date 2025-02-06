@@ -100,7 +100,7 @@ class RolController extends Controller
         $roles = Role::all();
         $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
 
-        $pdf = Pdf::loadView('admin.roles.reporte', compact('roles', 'empresa'));
+        $pdf = Pdf::loadView('admin.roles.reporte', compact('roles', 'empresa'))->setPaper('letter', 'landscape');
         
         return $pdf->stream();
     }

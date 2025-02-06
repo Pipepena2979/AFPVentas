@@ -136,7 +136,7 @@ class UsuarioController extends Controller
         $usuarios = User::all();
         $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
 
-        $pdf = Pdf::loadView('admin.usuarios.reporte', compact('usuarios', 'empresa'));
+        $pdf = Pdf::loadView('admin.usuarios.reporte', compact('usuarios', 'empresa'))->setPaper('letter', 'landscape');
         
         return $pdf->stream();
     }

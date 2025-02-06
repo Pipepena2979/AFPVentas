@@ -105,7 +105,7 @@ class CategoriaController extends Controller
         $categorias = Categoria::all();
         $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
 
-        $pdf = Pdf::loadView('admin.categorias.reporte', compact('categorias', 'empresa'));
+        $pdf = Pdf::loadView('admin.categorias.reporte', compact('categorias', 'empresa'))->setPaper('letter', 'landscape');
         
         return $pdf->stream();
     }
