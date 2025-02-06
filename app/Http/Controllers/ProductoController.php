@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Empresa;
 use App\Models\Producto;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Nnjeim\World\Models\Currency;
 
 class ProductoController extends Controller
 {
@@ -135,6 +138,17 @@ class ProductoController extends Controller
         $producto->save();
 
         return redirect()->route('admin.productos.index')->with('mensaje', 'Producto actualizado con éxito')->with('icono', 'success');
+    }
+
+    public function reporte() {
+
+        $productos = Producto::where('empresa_id', Auth::user()->empresa_id)->get();
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+        $moneda = Currency::where('symbol', $empresa->moneda)->first();
+
+        $pdf = Pdf::loadView('admin.productos.reporte', compact('productos', 'moneda', 'empresa'))->setPaper('letter', 'landscape');
+        
+        return $pdf->stream();
     }
 
     /**

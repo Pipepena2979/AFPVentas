@@ -13,8 +13,10 @@
                     <h3 class="card-title">Ventas Registradas</h3>
                     <div class="card-tools">
                         @if($arqueoAbierto)
+                            <a href="{{ route('admin.ventas.reporte') }}" target="_blank" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Reporte</a>
                             <a href="{{ route('admin.ventas.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Crear Venta</a>
                         @else
+                            <a href="{{ route('admin.ventas.reporte') }}" target="_blank" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Reporte</a>
                             <a href="{{ route('admin.arqueos.create') }}" class="btn btn-danger"><i class="fas fa-cash-register"></i> Abrir Caja</a>
                         @endif
                     </div>

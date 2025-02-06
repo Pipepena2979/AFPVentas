@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArqueoCaja;
+use App\Models\Empresa;
 use App\Models\MovimientoCaja;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -164,6 +166,21 @@ class ArqueoCajaController extends Controller
 
         // REDIRECCIONAR AL INDEX DE CLIENTES //
         return redirect()->route('admin.arqueos.index')->with('mensaje', 'Arqueo de Caja actualizado con éxito')->with('icono', 'success');
+    }
+
+    public function reporte() {
+
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+        $arqueos = ArqueoCaja::with('movimientos')->get();
+
+        foreach ($arqueos as $arqueo) {
+            $arqueo->total_ingresos = $arqueo->movimientos()->where('tipo', 'INGRESO')->sum('monto');
+            $arqueo->total_egresos = $arqueo->movimientos()->where('tipo', 'EGRESO')->sum('monto');
+        }
+
+        $pdf = Pdf::loadView('admin.arqueos.reporte', compact('empresa', 'arqueos'))->setPaper('letter', 'landscape');
+        
+        return $pdf->stream();
     }
 
     /**

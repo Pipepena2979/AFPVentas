@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empresa;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -92,6 +93,16 @@ class RolController extends Controller
         $rol->save();
 
         return redirect()->route('admin.roles.index')->with('mensaje', 'Rol actualizado con éxito')->with('icono', 'success');
+    }
+
+    public function reporte() {
+
+        $roles = Role::all();
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+
+        $pdf = Pdf::loadView('admin.roles.reporte', compact('roles', 'empresa'));
+        
+        return $pdf->stream();
     }
 
     /**

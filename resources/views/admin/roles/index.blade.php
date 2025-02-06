@@ -12,6 +12,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Roles Registrados</h3>
                     <div class="card-tools">
+                        <a href="{{ route('admin.roles.reporte') }}" target="_blank" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Reporte</a>
                         <a href="{{ route('admin.roles.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Crear Rol</a>
                     </div>
                 </div>

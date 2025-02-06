@@ -13,8 +13,10 @@
                     <h3 class="card-title">Arqueos de Caja Registrados</h3>
                     <div class="card-tools">
                         @if($arqueoAbierto)
+                            <a href="{{ route('admin.arqueos.reporte') }}" target="_blank" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Reporte</a>
                             <a href="{{ route('admin.arqueos.cierre', $arqueos->last()->id) }}" class="btn btn-success"><i class="fas fa-lock"></i> Cerrar Caja</a>
                         @else
+                            <a href="{{ route('admin.arqueos.reporte') }}" target="_blank" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Reporte</a>
                             <a href="{{ route('admin.arqueos.create') }}" class="btn btn-danger"><i class="fas fa-plus"></i> Crear Arqueo de Caja</a>
                         @endif
                     </div>

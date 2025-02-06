@@ -180,6 +180,16 @@ class VentaController extends Controller
         return redirect()->route('admin.ventas.index')->with('mensaje','Se ha actualizado la venta exitosamente')->with('icono', 'success');
     }
 
+    public function reporte() {
+
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+        $ventas = Venta::with('cliente')->get();
+
+        $pdf = Pdf::loadView('admin.ventas.reporte', compact('empresa', 'ventas'))->setPaper('letter', 'landscape');
+        
+        return $pdf->stream();
+    }
+
     /**
      * Remove the specified resource from storage.
      */

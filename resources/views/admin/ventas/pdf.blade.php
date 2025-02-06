@@ -101,7 +101,8 @@
 
     <br>
 
-    <table class="table table-bordered">
+    <div class="table-responsive">
+        <table class="table table-bordered">
         <tr>
             <td width="30px" style="background-color: #cccccc; text-align: center"><b>Nro</b></td>
             <td width="150px" style="background-color: #cccccc; text-align: center"><b>Productos</b></td>
@@ -139,7 +140,8 @@
                     <td style="background-color: #cccccc; text-align: center"><b>{{ $moneda->symbol ." ". $total_venta }}</b></td>
                 </tr>
             </tbody>
-    </table>
+        </table>
+    </div>
 
     <p>
         <b>Monto a Cancelar: </b>{{ $moneda->symbol ." ". $total_venta }}<br><br>

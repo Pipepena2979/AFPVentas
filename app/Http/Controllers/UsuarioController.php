@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresa;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -127,6 +129,16 @@ class UsuarioController extends Controller
 
         // REDIRECCIONAR AL INDEX DEL ADMIN //
         return redirect()->route('admin.usuarios.index')->with('mensaje','Se ha actualizado el usuario exitosamente')->with('icono', 'success');
+    }
+
+    public function reporte() {
+        
+        $usuarios = User::all();
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+
+        $pdf = Pdf::loadView('admin.usuarios.reporte', compact('usuarios', 'empresa'));
+        
+        return $pdf->stream();
     }
 
     /**

@@ -26,6 +26,7 @@ Route::put('/admin/configuracion/{id}', [App\Http\Controllers\EmpresaController:
 
 // RUTAS PARA LOS ROLES //
 Route::get('/admin/roles', [App\Http\Controllers\RolController::class, 'index'])->name('admin.roles.index')->middleware('auth');
+Route::get('/admin/roles/reporte', [App\Http\Controllers\RolController::class, 'reporte'])->name('admin.roles.reporte')->middleware('auth');
 Route::get('/admin/roles/create', [App\Http\Controllers\RolController::class, 'create'])->name('admin.roles.create')->middleware('auth');
 Route::post('/admin/roles/create', [App\Http\Controllers\RolController::class, 'store'])->name('admin.roles.store')->middleware('auth');
 Route::get('/admin/roles/{id}', [App\Http\Controllers\RolController::class, 'show'])->name('admin.roles.show')->middleware('auth');
@@ -35,6 +36,7 @@ Route::delete('/admin/roles/{id}', [App\Http\Controllers\RolController::class, '
 
 // RUTAS PARA LOS USUARIOS //
 Route::get('/admin/usuarios', [App\Http\Controllers\UsuarioController::class, 'index'])->name('admin.usuarios.index')->middleware('auth');
+Route::get('/admin/usuarios/reporte', [App\Http\Controllers\UsuarioController::class, 'reporte'])->name('admin.usuarios.reporte')->middleware('auth');
 Route::get('/admin/usuarios/create', [App\Http\Controllers\UsuarioController::class, 'create'])->name('admin.usuarios.create')->middleware('auth');
 Route::post('/admin/usuarios/create', [App\Http\Controllers\UsuarioController::class, 'store'])->name('admin.usuarios.store')->middleware('auth');
 Route::get('/admin/usuarios/{id}', [App\Http\Controllers\UsuarioController::class, 'show'])->name('admin.usuarios.show')->middleware('auth');
@@ -44,6 +46,7 @@ Route::delete('/admin/usuarios/{id}', [App\Http\Controllers\UsuarioController::c
 
 // RUTAS PARA LAS CATEGORIAS //
 Route::get('/admin/categorias', [App\Http\Controllers\CategoriaController::class, 'index'])->name('admin.categorias.index')->middleware('auth');
+Route::get('/admin/categorias/reporte', [App\Http\Controllers\CategoriaController::class, 'reporte'])->name('admin.categorias.reporte')->middleware('auth');
 Route::get('/admin/categorias/create', [App\Http\Controllers\CategoriaController::class, 'create'])->name('admin.categorias.create')->middleware('auth');
 Route::post('/admin/categorias/create', [App\Http\Controllers\CategoriaController::class, 'store'])->name('admin.categorias.store')->middleware('auth');
 Route::get('/admin/categorias/{id}', [App\Http\Controllers\CategoriaController::class, 'show'])->name('admin.categorias.show')->middleware('auth');
@@ -53,6 +56,7 @@ Route::delete('/admin/categorias/{id}', [App\Http\Controllers\CategoriaControlle
 
 // RUTAS PARA LOS PRODUCTOS //
 Route::get('/admin/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('admin.productos.index')->middleware('auth');
+Route::get('/admin/productos/reporte', [App\Http\Controllers\ProductoController::class, 'reporte'])->name('admin.productos.reporte')->middleware('auth');
 Route::get('/admin/productos/create', [App\Http\Controllers\ProductoController::class, 'create'])->name('admin.productos.create')->middleware('auth');
 Route::post('/admin/productos/create', [App\Http\Controllers\ProductoController::class, 'store'])->name('admin.productos.store')->middleware('auth');
 Route::get('/admin/productos/{id}', [App\Http\Controllers\ProductoController::class, 'show'])->name('admin.productos.show')->middleware('auth');
@@ -62,6 +66,7 @@ Route::delete('/admin/productos/{id}', [App\Http\Controllers\ProductoController:
 
 // RUTAS PARA LOS PROVEEDORES //
 Route::get('/admin/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('admin.proveedores.index')->middleware('auth');
+Route::get('/admin/proveedores/reporte', [App\Http\Controllers\ProveedorController::class, 'reporte'])->name('admin.proveedores.reporte')->middleware('auth');
 Route::get('/admin/proveedores/create', [App\Http\Controllers\ProveedorController::class, 'create'])->name('admin.proveedores.create')->middleware('auth');
 Route::post('/admin/proveedores/create', [App\Http\Controllers\ProveedorController::class, 'store'])->name('admin.proveedores.store')->middleware('auth');
 Route::get('/admin/proveedores/{id}', [App\Http\Controllers\ProveedorController::class, 'show'])->name('admin.proveedores.show')->middleware('auth');
@@ -71,6 +76,7 @@ Route::delete('/admin/proveedores/{id}', [App\Http\Controllers\ProveedorControll
 
 // RUTAS PARA LAS COMPRAS //
 Route::get('/admin/compras', [App\Http\Controllers\CompraController::class, 'index'])->name('admin.compras.index')->middleware('auth');
+Route::get('/admin/compras/reporte', [App\Http\Controllers\CompraController::class, 'reporte'])->name('admin.compras.reporte')->middleware('auth');
 Route::get('/admin/compras/create', [App\Http\Controllers\CompraController::class, 'create'])->name('admin.compras.create')->middleware('auth');
 Route::post('/admin/compras/create', [App\Http\Controllers\CompraController::class, 'store'])->name('admin.compras.store')->middleware('auth');
 Route::get('/admin/compras/{id}', [App\Http\Controllers\CompraController::class, 'show'])->name('admin.compras.show')->middleware('auth');
@@ -88,6 +94,7 @@ Route::delete('/admin/compras/detalle/{id}', [App\Http\Controllers\DetalleCompra
 
 // RUTAS PARA LOS CLIENTES //
 Route::get('/admin/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('admin.clientes.index')->middleware('auth');
+Route::get('/admin/clientes/reporte', [App\Http\Controllers\ClienteController::class, 'reporte'])->name('admin.clientes.reporte')->middleware('auth');
 Route::get('/admin/clientes/create', [App\Http\Controllers\ClienteController::class, 'create'])->name('admin.clientes.create')->middleware('auth');
 Route::post('/admin/clientes/create', [App\Http\Controllers\ClienteController::class, 'store'])->name('admin.clientes.store')->middleware('auth');
 Route::get('/admin/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'show'])->name('admin.clientes.show')->middleware('auth');
@@ -97,6 +104,7 @@ Route::delete('/admin/clientes/{id}', [App\Http\Controllers\ClienteController::c
 
 // RUTAS PARA LAS VENTAS //
 Route::get('/admin/ventas', [App\Http\Controllers\VentaController::class, 'index'])->name('admin.ventas.index')->middleware('auth');
+Route::get('/admin/ventas/reporte', [App\Http\Controllers\VentaController::class, 'reporte'])->name('admin.ventas.reporte')->middleware('auth');
 Route::get('/admin/ventas/create', [App\Http\Controllers\VentaController::class, 'create'])->name('admin.ventas.create')->middleware('auth');
 Route::post('/admin/ventas/create', [App\Http\Controllers\VentaController::class, 'store'])->name('admin.ventas.store')->middleware('auth');
 Route::get('/admin/ventas/pdf/{id}', [App\Http\Controllers\VentaController::class, 'pdf'])->name('admin.ventas.pdf')->middleware('auth');
@@ -115,6 +123,7 @@ Route::delete('/admin/ventas/detalle/{id}', [App\Http\Controllers\DetalleVentaCo
 
 // RUTAS PARA LOS ARQUEOS DE CAJA //
 Route::get('/admin/arqueos', [App\Http\Controllers\ArqueoCajaController::class, 'index'])->name('admin.arqueos.index')->middleware('auth');
+Route::get('/admin/arqueos/reporte', [App\Http\Controllers\ArqueoCajaController::class, 'reporte'])->name('admin.arqueos.reporte')->middleware('auth');
 Route::get('/admin/arqueos/create', [App\Http\Controllers\ArqueoCajaController::class, 'create'])->name('admin.arqueos.create')->middleware('auth');
 Route::post('/admin/arqueos/create', [App\Http\Controllers\ArqueoCajaController::class, 'store'])->name('admin.arqueos.store')->middleware('auth');
 Route::get('/admin/arqueos/{id}', [App\Http\Controllers\ArqueoCajaController::class, 'show'])->name('admin.arqueos.show')->middleware('auth');

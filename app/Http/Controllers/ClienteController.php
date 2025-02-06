@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Empresa;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nnjeim\World\Models\Currency;
 
 class ClienteController extends Controller
 {
@@ -104,6 +107,17 @@ class ClienteController extends Controller
 
         // REDIRECCIONAR AL INDEX DE CLIENTES //
         return redirect()->route('admin.clientes.index')->with('mensaje', 'Cliente actualizado con éxito')->with('icono', 'success');
+    }
+
+    public function reporte() {
+
+        $clientes = Cliente::where('empresa_id', Auth::user()->empresa_id)->get();
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+        $moneda = Currency::where('symbol', $empresa->moneda)->first();
+
+        $pdf = Pdf::loadView('admin.clientes.reporte', compact('clientes', 'moneda', 'empresa'))->setPaper('letter', 'landscape');
+        
+        return $pdf->stream();
     }
 
     /**

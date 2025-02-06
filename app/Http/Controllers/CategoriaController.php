@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Empresa;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -96,6 +98,16 @@ class CategoriaController extends Controller
         $categoria->save();
 
         return redirect()->route('admin.categorias.index')->with('mensaje', 'Categoría actualizada con éxito')->with('icono', 'success');
+    }
+
+    public function reporte() {
+        
+        $categorias = Categoria::all();
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+
+        $pdf = Pdf::loadView('admin.categorias.reporte', compact('categorias', 'empresa'));
+        
+        return $pdf->stream();
     }
 
     /**

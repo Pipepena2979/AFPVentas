@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use App\Models\Proveedor;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -112,6 +113,16 @@ class ProveedorController extends Controller
 
         // REDIRECCIONAR AL INDEX DE PROVEEDORES //
         return redirect()->route('admin.proveedores.index')->with('mensaje','Proveedor actualizado con éxito')->with('icono', 'success');
+    }
+
+    public function reporte() {
+
+        $proveedores = Proveedor::where('empresa_id', Auth::user()->empresa_id)->get();
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+
+        $pdf = Pdf::loadView('admin.proveedores.reporte', compact('proveedores', 'empresa'))->setPaper('letter', 'landscape');
+        
+        return $pdf->stream();
     }
 
     /**

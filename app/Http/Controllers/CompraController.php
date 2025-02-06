@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\ArqueoCaja;
 use App\Models\Compra;
 use App\Models\DetalleCompra;
+use App\Models\Empresa;
 use App\Models\MovimientoCaja;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\TmpCompra;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nnjeim\World\Models\Currency;
 
 class CompraController extends Controller
 {
@@ -148,6 +151,17 @@ class CompraController extends Controller
 
         // REDIRECCIONAR AL INDEX DE COMPRAS //
         return redirect()->route('admin.compras.index')->with('mensaje','Se ha actualizado la compra exitosamente')->with('icono', 'success');
+    }
+
+    public function reporte() {
+
+        $compras = Compra::where('empresa_id', Auth::user()->empresa_id)->get();
+        $empresa = Empresa::where('id', Auth::user()->empresa_id)->first();
+        $moneda = Currency::where('symbol', $empresa->moneda)->first();
+
+        $pdf = Pdf::loadView('admin.compras.reporte', compact('compras', 'moneda', 'empresa'))->setPaper('letter', 'landscape');
+        
+        return $pdf->stream();
     }
 
     /**
