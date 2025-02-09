@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1><b>Roles/Detalle del Rol</b></h1>
+    <h1><b>Permisos/Detalle del Permiso</b></h1>
     <hr>
 @stop
 
@@ -16,15 +16,15 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="name">Nombre del Rol</label>
-                                    <input type="text" class="form-control" value="{{ $rol->name }}" disabled>
+                                    <label for="name">Nombre del Permiso</label>
+                                    <input type="text" class="form-control" value="{{ $permiso->name }}" disabled>
                                     @error('name')
                                         <small class="form-text text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             <div class="form-group">
                                     <label for="name">Fecha y Hora de Creación</label>
-                                    <input type="text" class="form-control" value="{{ $rol->created_at }}" disabled>
+                                    <input type="text" class="form-control" value="{{ $permiso->created_at }}" disabled>
                                     @error('name')
                                         <small class="form-text text-danger">{{ $message }}</small>
                                     @enderror
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <a href="{{ route('admin.roles.index')}}" class="btn btn-info btn-block"><i class="fas fa-arrow-left"></i> Volver</a>
+                                <a href="{{ route('admin.permisos.index')}}" class="btn btn-info btn-block"><i class="fas fa-arrow-left"></i> Volver</a>
                             </div>
                         </div>
                     </div>

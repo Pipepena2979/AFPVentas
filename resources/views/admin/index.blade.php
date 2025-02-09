@@ -133,10 +133,205 @@
             <!-- /.info-box -->
         </div>
     </div>
+
+    <!-- Gráfico de barras para roles -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Distribución de Usuarios por Rol</h3>
+                </div>
+                <div class="card-body">
+                    <div id="rolesChart" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Gráfico de barras para categorías -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Cantidad de Productos por Categoría</h3>
+                </div>
+                <div class="card-body">
+                    <div id="categoriasChart" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+    
+    <!-- Gráfico de torta para la distribución de compras, ventas, proveedores y clientes por empresa -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">{{ $empresa->nombre_empresa }}</h3>
+                </div>
+                <div class="card-body">
+                    <div id="empresaChart" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')
 @stop
 
 @section('js')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+    Highcharts.chart('rolesChart', {
+        chart: {
+            type: 'column' // Tipo de gráfico de columnas
+        },
+
+        title: {
+            text: 'Distribución de Usuarios por Rol', // Título del gráfico
+            align: 'center'
+        },
+
+        xAxis: {
+            categories: @json($labelsRoles), // Nombres de los roles (pasados desde el controlador)
+            title: {
+                text: 'Roles' // Etiqueta del eje X
+            }
+        },
+
+        yAxis: {
+            allowDecimals: false, // No permitir decimales en el eje Y
+            min: 0, // Valor mínimo del eje Y
+            title: {
+                text: 'Cantidad de Usuarios' // Etiqueta del eje Y
+            }
+        },
+
+        tooltip: {
+            format: '<b>{point.category}</b><br/>{series.name}: {y}<br/>' + // Formato del tooltip
+                    'Total: {point.stackTotal}'
+        },
+
+        plotOptions: {
+            column: {
+                stacking: 'normal', // Columnas apiladas
+                colorByPoint: true // Alternar colores por cada columna
+            }
+        },
+
+        colors: [ // Array de colores personalizados
+                    '#007bff', // Azul
+                    '#28a745', // Verde
+                    '#ffc107', // Amarillo
+                    '#dc3545', // Rojo
+                    '#6f42c1', // Morado
+                    '#17a2b8', // Cyan
+                    '#fd7e14', // Naranja
+                    '#343a40'  // Gris oscuro
+                ],
+
+        series: [{
+            name: 'Usuarios', // Nombre de la serie
+            data: @json($dataRoles), // Cantidad de usuarios por rol (pasados desde el controlador)
+            stack: 'roles' // Grupo de apilamiento
+        }]
+    });
+    </script>
+    <script>
+    Highcharts.chart('categoriasChart', {
+        chart: {
+            type: 'column'
+        },
+
+        title: {
+            text: 'Cantidad de Productos por Categoría'
+        },
+
+        xAxis: {
+            type: 'category',
+            categories: @json($labelsCategorias), // Nombres de las categorías
+            labels: {
+                autoRotation: [-45, -90], // Rotación automática de las etiquetas
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Cantidad de Productos'
+            }
+        },
+
+        legend: {
+            enabled: false // Ocultar la leyenda
+        },
+
+        tooltip: {
+            pointFormat: '<b>{point.y}</b> productos en la categoría <b>{point.name}</b>'
+        },
+
+        series: [{
+            name: 'Productos',
+            colorByPoint: true, // Alternar colores por cada columna
+            groupPadding: 0, // Espaciado entre grupos de columnas
+            data: @json($dataCategorias), // Datos desde el controlador
+            dataLabels: {
+                enabled: true, // Mostrar etiquetas de datos
+                rotation: -90, // Rotación de las etiquetas
+                color: '#FFFFFF', // Color del texto
+                inside: true, // Mostrar etiquetas dentro de las columnas
+                verticalAlign: 'top', // Alineación vertical
+                format: '{point.y:.0f}', // Formato sin decimales
+                y: 10, // Posición vertical de las etiquetas
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+    </script>
+    <script>
+        Highcharts.chart('empresaChart', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie' // Tipo de gráfico: pie (torta)
+            },
+
+            title: {
+                text: 'Porcentaje de Compras, Ventas, Proveedores, Clientes y Arqueos de Caja' // Título del gráfico
+            },
+
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>' // Formato del tooltip
+            },
+
+            accessibility: {
+                point: {
+                    valueSuffix: '%' // Sufijo para accesibilidad
+                }
+            },
+
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true, // Permitir seleccionar porciones
+                    cursor: 'pointer', // Cambiar el cursor al pasar sobre las porciones
+                    dataLabels: {
+                        enabled: true, // Mostrar etiquetas de datos
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %' // Formato de las etiquetas
+                    },
+                    showInLegend: true // Mostrar leyenda
+                }
+            },
+
+            series: [{
+                name: 'Porcentaje', // Nombre de la serie
+                colorByPoint: true, // Alternar colores por cada porción
+                data: @json($dataEmpresa) // Datos desde el controlador
+            }]
+        });
+    </script>
 @stop
